@@ -1,0 +1,29 @@
+# ── LLM ──────────────────────────────────────────────────────────
+groq
+langchain
+langchain-groq
+langchain-core
+langchain-community
+langchain-text-splitters
+langgraph
+
+# ── Environment ───────────────────────────────────────────────────
+python-dotenv
+
+# ── Stock Data ────────────────────────────────────────────────────
+yfinance
+pandas
+
+# ── News & Search ─────────────────────────────────────────────────
+newsapi-python
+duckduckgo-search
+
+# ── Frontend ──────────────────────────────────────────────────────
+streamlit
+plotly
+
+# ── Telegram ──────────────────────────────────────────────────────
+python-telegram-bot
+
+# ── Utils ─────────────────────────────────────────────────────────
+requests
