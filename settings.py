@@ -1,5 +1,5 @@
 """
-config.py
+settings.py
 ──────────────────────────────────────────────────
 Central configuration for NIVESH.
 Every file imports from here — never reads .env directly.
@@ -36,7 +36,9 @@ def setup_logger(name: str = "nivesh")-> logging.Logger:
     if logger.handlers:
         return logger
 
-    # ── Console handler — shows INFO and above in terminal ───────
+    logger.setLevel(logging.DEBUG)
+
+    # ── Console handler ───────────────────────────────────────────
     console_handler = logging.StreamHandler()
     console_handler.setLevel(logging.INFO)
     console_format = logging.Formatter(
@@ -45,8 +47,11 @@ def setup_logger(name: str = "nivesh")-> logging.Logger:
     )
     console_handler.setFormatter(console_format)
 
-    # ── File handler — saves ALL levels to nivesh.log ─────────────
-    file_handler = logging.FileHandler("nivesh.log")
+    # ── File handler ──────────────────────────────────────────────
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    log_path = os.path.join(BASE_DIR, "nivesh.log")
+
+    file_handler = logging.FileHandler(log_path, mode="a", encoding="utf-8")
     file_handler.setLevel(logging.DEBUG)
     file_format = logging.Formatter(
         fmt="%(asctime)s | %(levelname)-8s | %(name)s | %(funcName)s:%(lineno)d | %(message)s",
@@ -58,6 +63,8 @@ def setup_logger(name: str = "nivesh")-> logging.Logger:
     logger.addHandler(file_handler)
 
     return logger
+
+logger = setup_logger("nivesh")
 
 logger = setup_logger("nivesh")
 
@@ -121,3 +128,4 @@ APP_TAGLINE = "AI-Powered Indian Stock Research Analyst"
 
 # -------- Startup log ------------------------------------
 logger.info(f"{APP_NAME} v{APP_VERSION} — config loaded")
+logger.info("Settings loaded successfully")
